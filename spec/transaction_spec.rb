@@ -7,6 +7,10 @@ RSpec.describe Transaction do
       it 'can record the deposit of a transaction' do
         expect(deposit_transaction.credit).to eq 100
       end
+
+      it 'debits nil as default' do
+        expect(deposit_transaction.debit).to eq nil
+      end
     end
   end
 
@@ -16,6 +20,21 @@ RSpec.describe Transaction do
       it 'can record the deposit of a transaction' do
         expect(withdraw_transaction.debit).to eq 100
       end
+
+      it 'credits nil as default' do
+        expect(withdraw_transaction.credit).to eq nil
+      end
+    end
+  end
+
+  describe '#date' do
+    let(:time) { double :time }
+    let(:date_format) { double(:date) }
+    subject(:transaction) { described_class.new(date: time) }
+
+    it 'returns a date the transaction was made' do
+      allow(time).to receive(:strftime).with('%Y-%d-%m').and_return(date_format)
+      expect(transaction.date).to eq date_format
     end
   end
 end
