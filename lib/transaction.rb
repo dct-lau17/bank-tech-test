@@ -1,7 +1,8 @@
 class Transaction
-  attr_reader :credit
+  attr_reader :credit, :debit
 
-  def initialize(credit: nil)
+  def initialize(credit: nil, debit: nil)
     @credit = credit
+    @debit = debit
   end
 end

@@ -13,6 +13,15 @@
         null,
         null,
         null,
+        null,
+        1,
+        2,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/daniellau/Projects/week-10/bank-test/lib/transaction.rb": [
@@ -20,11 +29,12 @@
         1,
         null,
         1,
-        1,
+        2,
+        2,
         null,
         null
       ]
     },
-    "timestamp": 1534196197
+    "timestamp": 1534196477
   }
 }
