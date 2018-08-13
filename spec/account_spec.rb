@@ -24,5 +24,9 @@ RSpec.describe Account do
       expect(transaction_class).to have_received(:new)
         .with(credit: 100, balance: 100)
     end
+
+    it 'stores the transaction into a transaction_log' do
+      expect(account.transaction_log).to include transaction
+    end
   end
 end

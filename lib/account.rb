@@ -1,5 +1,5 @@
 class Account
-  attr_reader :balance
+  attr_reader :balance, :transaction_log
 
   def initialize(transaction_class: Transaction)
     @balance = 0
@@ -9,7 +9,12 @@ class Account
 
   def deposit(amount)
     @balance += amount
-    @transaction_class.new(credit: amount, balance: @balance)
+    save(@transaction_class.new(credit: amount, balance: @balance))
   end
 
+  private
+
+  def save(transaction)
+    @transaction_log << transaction
+  end
 end

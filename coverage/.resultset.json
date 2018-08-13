@@ -4,9 +4,9 @@
       "/Users/daniellau/Projects/week-10/bank-test/spec/account_spec.rb": [
         1,
         1,
-        4,
-        4,
-        4,
+        5,
+        5,
+        5,
         null,
         null,
         1,
@@ -17,7 +17,7 @@
         null,
         1,
         1,
-        2,
+        3,
         null,
         null,
         1,
@@ -27,6 +27,10 @@
         1,
         1,
         null,
+        null,
+        null,
+        1,
+        1,
         null,
         null,
         null
@@ -36,15 +40,20 @@
         1,
         null,
         1,
-        3,
+        4,
+        4,
+        4,
+        null,
+        null,
+        1,
         3,
         3,
         null,
         null,
         1,
-        2,
-        2,
         null,
+        1,
+        3,
         null,
         null
       ],
@@ -116,6 +125,6 @@
         null
       ]
     },
-    "timestamp": 1534200073
+    "timestamp": 1534200282
   }
 }
