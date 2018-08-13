@@ -58,5 +58,11 @@ RSpec.describe Account do
     it 'stores the withdraw transaction into a transaction_log' do
       expect(account.transaction_log[1]).to eq transaction
     end
+
+    it 'raises an error if amount is over balance of the account' do
+      expect { account.withdraw(1000) }.to raise_error(
+        'Cannot withdraw amount that exceeds your balance'
+      )
+    end
   end
 end

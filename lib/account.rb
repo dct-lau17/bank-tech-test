@@ -16,6 +16,8 @@ class Account
   end
 
   def withdraw(amount)
+    raise 'Cannot withdraw amount that exceeds your balance' if
+      exceed_balance?(amount)
     @balance -= amount
     save(@transaction_class.new(debit: amount, balance: @balance))
   end
@@ -28,5 +30,9 @@ class Account
 
   def below_deposit_requirement?(amount)
     amount < MINIMUM_DEPOSIT
+  end
+
+  def exceed_balance?(amount)
+    amount > @balance
   end
 end
