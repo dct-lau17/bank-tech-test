@@ -48,5 +48,10 @@ RSpec.describe Account do
     it 'decrease the account balance by the specified amount' do
       expect(account.balance).to eq 900
     end
+
+    it 'creates a transaction instance with a credit value' do
+      expect(transaction_class).to have_received(:new)
+        .with(debit: 100, balance: 900)
+    end
   end
 end
