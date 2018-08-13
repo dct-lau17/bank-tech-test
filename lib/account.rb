@@ -1,5 +1,6 @@
 class Account
   attr_reader :balance, :transaction_log
+  MINIMUM_DEPOSIT = 1
 
   def initialize(transaction_class: Transaction)
     @balance = 0
@@ -8,6 +9,8 @@ class Account
   end
 
   def deposit(amount)
+    raise 'Sorry amount does not reach minimum requirement' if
+      below_deposit_requirement?(amount)
     @balance += amount
     save(@transaction_class.new(credit: amount, balance: @balance))
   end
@@ -16,5 +19,9 @@ class Account
 
   def save(transaction)
     @transaction_log << transaction
+  end
+
+  def below_deposit_requirement?(amount)
+    amount < MINIMUM_DEPOSIT
   end
 end

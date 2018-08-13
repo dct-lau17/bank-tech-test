@@ -4,10 +4,13 @@ RSpec.describe Account do
   let(:transaction_class) { double(:transaction_class, new: transaction) }
   subject(:account) { described_class.new(transaction_class: transaction_class) }
 
-
   describe '#defaults' do
     it 'has a balance of 0' do
       expect(account.balance).to eq 0
+    end
+
+    it 'has an empty transaction log' do
+      expect(account.transaction_log).to eq []
     end
   end
 
@@ -27,6 +30,12 @@ RSpec.describe Account do
 
     it 'stores the transaction into a transaction_log' do
       expect(account.transaction_log).to include transaction
+    end
+
+    it 'raises an error if amount is less than minimum deposit requirement' do
+      expect { account.deposit(0.5) }.to raise_error(
+        'Sorry amount does not reach minimum requirement'
+      )
     end
   end
 end
