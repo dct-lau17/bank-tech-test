@@ -37,4 +37,17 @@ RSpec.describe Transaction do
       expect(transaction.date).to eq date_format
     end
   end
+
+  describe '#balance' do
+    let(:default_transaction) { described_class.new }
+
+    it 'has a default value of nil' do
+      expect(default_transaction.balance).to eq nil
+    end
+
+    subject(:transaction) { described_class.new(balance: 100) }
+    it 'returns a snapshot of the balance at the point of transaction' do
+      expect(transaction.balance).to eq 100
+    end
+  end
 end
