@@ -15,6 +15,10 @@ class Account
     save(@transaction_class.new(credit: amount, balance: @balance))
   end
 
+  def withdraw(amount)
+    @balance -= amount
+  end
+
   private
 
   def save(transaction)

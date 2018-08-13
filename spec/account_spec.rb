@@ -19,7 +19,7 @@ RSpec.describe Account do
       account.deposit(100)
     end
 
-    it 'increases the bank balance by the specified amount' do
+    it 'increases the account balance by the specified amount' do
       expect(account.balance).to eq 100
     end
 
@@ -36,6 +36,17 @@ RSpec.describe Account do
       expect { account.deposit(0.5) }.to raise_error(
         'Sorry amount does not reach minimum requirement'
       )
+    end
+  end
+
+  describe '#withdraw' do
+    before do
+      account.deposit(1000)
+      account.withdraw(100)
+    end
+
+    it 'decrease the account balance by the specified amount' do
+      expect(account.balance).to eq 900
     end
   end
 end
