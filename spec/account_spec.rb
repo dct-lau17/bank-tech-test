@@ -28,7 +28,7 @@ RSpec.describe Account do
         .with(credit: 100, balance: 100)
     end
 
-    it 'stores the transaction into a transaction_log' do
+    it 'stores the deposit transaction into a transaction_log' do
       expect(account.transaction_log).to include transaction
     end
 
@@ -40,6 +40,7 @@ RSpec.describe Account do
   end
 
   describe '#withdraw' do
+    let(:credit_transaction) { double(:transaction) }
     before do
       account.deposit(1000)
       account.withdraw(100)
@@ -52,6 +53,10 @@ RSpec.describe Account do
     it 'creates a transaction instance with a credit value' do
       expect(transaction_class).to have_received(:new)
         .with(debit: 100, balance: 900)
+    end
+
+    it 'stores the withdraw transaction into a transaction_log' do
+      expect(account.transaction_log[1]).to eq transaction
     end
   end
 end

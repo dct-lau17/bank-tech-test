@@ -17,7 +17,7 @@ class Account
 
   def withdraw(amount)
     @balance -= amount
-    @transaction_class.new(debit: amount, balance: @balance)
+    save(@transaction_class.new(debit: amount, balance: @balance))
   end
 
   private
