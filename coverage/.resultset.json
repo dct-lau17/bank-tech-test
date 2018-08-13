@@ -1,6 +1,14 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/daniellau/Projects/week-10/bank-test/spec/account_spec.rb": [
+        1
+      ],
+      "/Users/daniellau/Projects/week-10/bank-test/lib/account.rb": [
+        1,
+        null,
+        null
+      ],
       "/Users/daniellau/Projects/week-10/bank-test/spec/transaction_spec.rb": [
         1,
         null,
@@ -69,6 +77,6 @@
         null
       ]
     },
-    "timestamp": 1534197716
+    "timestamp": 1534197804
   }
 }
