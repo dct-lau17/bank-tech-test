@@ -33,7 +33,7 @@ RSpec.describe Transaction do
     subject(:transaction) { described_class.new(date: time) }
 
     it 'returns a date the transaction was made' do
-      allow(time).to receive(:strftime).with('%Y-%d-%m').and_return(date_format)
+      allow(time).to receive(:strftime).with('%d/%m/%Y').and_return(date_format)
       expect(transaction.date).to eq date_format
     end
   end

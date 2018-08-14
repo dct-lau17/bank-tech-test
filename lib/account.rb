@@ -1,3 +1,5 @@
+require_relative './transaction'
+require_relative './printer'
 class Account
   attr_reader :balance, :transaction_log
   MINIMUM_DEPOSIT = 1
@@ -11,6 +13,7 @@ class Account
   def deposit(amount)
     raise 'Sorry amount does not reach minimum requirement' if
       below_deposit_requirement?(amount)
+
     @balance += amount
     save(@transaction_class.new(credit: amount, balance: @balance))
   end
