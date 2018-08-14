@@ -26,7 +26,7 @@ RSpec.describe Account do
 
     it 'creates a transaction instance with a credit value' do
       expect(transaction_class).to have_received(:new)
-        .with(credit: 100, balance: 100)
+        .with(credit: "%.2f" % 100, balance: "%.2f" % 100)
     end
 
     it 'stores the deposit transaction into a transaction_log' do
@@ -52,7 +52,7 @@ RSpec.describe Account do
 
     it 'creates a transaction instance with a credit value' do
       expect(transaction_class).to have_received(:new)
-        .with(debit: 100, balance: 900)
+        .with(debit: "%.2f" % 100, balance: "%.2f" % 900)
     end
 
     it 'stores the withdraw transaction into a transaction_log' do
