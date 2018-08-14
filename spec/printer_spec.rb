@@ -17,7 +17,7 @@ RSpec.describe Printer do
       @printer =  described_class.new(log)
     end
 
-    it 'prints full statementin reverse order' do
+    it 'prints full statement in reverse order' do
       expected_header = 'date || credit || debit || balance'
       expected_output_trans1 = '11/11/2010 || 100 ||  || 100'
       expected_output_trans2 = '12/11/2010 ||  || 50 || 50'

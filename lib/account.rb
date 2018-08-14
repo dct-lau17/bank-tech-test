@@ -4,10 +4,11 @@ class Account
   attr_reader :balance, :transaction_log
   MINIMUM_DEPOSIT = 1
 
-  def initialize(transaction_class: Transaction)
+  def initialize(transaction_class: Transaction, printer: Printer)
     @balance = 0
     @transaction_class = transaction_class
     @transaction_log = []
+    @printer = printer
   end
 
   def deposit(amount)
@@ -23,6 +24,10 @@ class Account
       exceed_balance?(amount)
     @balance -= amount
     save(@transaction_class.new(debit: amount, balance: @balance))
+  end
+
+  def statement
+    @printer.new(@transaction_log).print_statement
   end
 
   private

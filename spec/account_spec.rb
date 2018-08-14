@@ -2,8 +2,9 @@ require 'account'
 RSpec.describe Account do
   let(:transaction) { double(:transaction) }
   let(:transaction_class) { double(:transaction_class, new: transaction) }
-  subject(:account) { described_class.new(transaction_class: transaction_class) }
-
+  let(:printer_class) { double(:printer_class, new: printer) }
+  let(:printer) { double(:printer, print_statement: transaction) }
+  subject(:account) { described_class.new(transaction_class: transaction_class, printer: printer_class) }
   describe '#defaults' do
     it 'has a balance of 0' do
       expect(account.balance).to eq 0
@@ -40,7 +41,6 @@ RSpec.describe Account do
   end
 
   describe '#withdraw' do
-    let(:credit_transaction) { double(:transaction) }
     before do
       account.deposit(1000)
       account.withdraw(100)
@@ -63,6 +63,23 @@ RSpec.describe Account do
       expect { account.withdraw(1000) }.to raise_error(
         'Cannot withdraw amount that exceeds your balance'
       )
+    end
+  end
+
+  describe '#statement' do
+    before do
+      account.deposit(1000)
+      account.withdraw(500)
+    end
+
+    it 'creates an new printer instance' do
+      account.statement
+      expect(printer_class).to have_received(:new)
+    end
+
+    it 'prints out statement from using the printer instance' do
+      account.statement
+      expect(printer).to have_received(:print_statement)
     end
   end
 end
