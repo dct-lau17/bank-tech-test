@@ -16,14 +16,14 @@ class Account
       below_deposit_requirement?(amount)
 
     @balance += amount
-    save(@transaction_class.new(credit: amount, balance: @balance))
+    save(@transaction_class.new(credit: "%.2f" % amount, balance: "%.2f" % @balance))
   end
 
   def withdraw(amount)
     raise 'Cannot withdraw amount that exceeds your balance' if
       exceed_balance?(amount)
     @balance -= amount
-    save(@transaction_class.new(debit: amount, balance: @balance))
+    save(@transaction_class.new(debit: "%.2f" % amount, balance: "%.2f" % @balance))
   end
 
   def statement
