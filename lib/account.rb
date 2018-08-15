@@ -1,12 +1,11 @@
 require_relative './transaction'
 require_relative './printer'
 class Account
-  attr_reader :balance, :transaction_log
+  attr_reader :balance
   MINIMUM_DEPOSIT = 1
 
-  def initialize(transaction_class = Transaction, printer = Printer.new)
+  def initialize(printer = Printer.new)
     @balance = 0
-    @transaction_class = transaction_class
     @transaction_log = []
     @printer = printer
   end
@@ -15,14 +14,14 @@ class Account
     raise 'Sorry amount does not reach minimum requirement' if
       below_deposit_requirement?(amount)
     @balance += amount
-    save(@transaction_class.new(credit: "%.2f" % amount, balance: "%.2f" % @balance))
+    save(Transaction.new(credit: "%.2f" % amount, balance: "%.2f" % @balance))
   end
 
   def withdraw(amount)
     raise 'Cannot withdraw amount that exceeds your balance' if
       exceed_balance?(amount)
     @balance -= amount
-    save(@transaction_class.new(debit: "%.2f" % amount, balance: "%.2f" % @balance))
+    save(Transaction.new(debit: "%.2f" % amount, balance: "%.2f" % @balance))
   end
 
   def statement

@@ -3,7 +3,7 @@ RSpec.describe Account do
   let(:transaction) { double(:transaction) }
   let(:transaction_class) { double(:transaction_class, new: transaction) }
   let(:printer) { double(:printer, print_statement: transaction) }
-  subject(:account) { described_class.new(transaction_class, printer) }
+  subject(:account) { described_class.new(printer) }
 
   describe '#deposit' do
     before do
@@ -12,10 +12,6 @@ RSpec.describe Account do
 
     it 'increases the account balance by the specified amount' do
       expect(account.balance).to eq 100
-    end
-
-    it 'stores the deposit transaction into a transaction_log' do
-      expect(account.transaction_log).to include transaction
     end
 
     it 'raises an error if amount is less than minimum deposit requirement' do
@@ -35,10 +31,6 @@ RSpec.describe Account do
       expect(account.balance).to eq 900
     end
 
-    it 'stores the withdraw transaction into a transaction_log' do
-      expect(account.transaction_log[1]).to eq transaction
-    end
-
     it 'raises an error if amount is over balance of the account' do
       expect { account.withdraw(1000) }.to raise_error(
         'Cannot withdraw amount that exceeds your balance'
@@ -53,7 +45,6 @@ RSpec.describe Account do
     end
 
     it 'prints out statement from using the printer instance' do
-
       expect(printer).to receive(:print_statement)
       account.statement
     end
