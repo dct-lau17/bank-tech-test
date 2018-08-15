@@ -1,5 +1,4 @@
 class Printer
-
   def print_statement(transactions)
     puts header
     puts transactions.reverse.map { |transaction|

@@ -1,7 +1,6 @@
 require 'account'
 RSpec.describe Account do
   let(:transaction) { double(:transaction) }
-  let(:transaction_class) { double(:transaction_class, new: transaction) }
   let(:printer) { double(:printer, print_statement: transaction) }
   subject(:account) { described_class.new(printer) }
 
