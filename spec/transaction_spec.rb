@@ -16,8 +16,8 @@ RSpec.describe Transaction do
 
   context 'User withdraws amount' do
     subject(:withdraw_transaction) { described_class.new(debit: 100) }
-    describe '#credit' do
-      it 'can record the deposit of a transaction' do
+    describe '#debit' do
+      it 'can record the withdraw of a transaction' do
         expect(withdraw_transaction.debit).to eq 100
       end
 
