@@ -4,6 +4,16 @@
 
 A simple application that allows users to create an account to make bank deposits, withdrawals and print out statements. The app is built to run on command line interface. The specific requirements and acceptance criteria are as below:
 
+## Installation and Launching App
+```
+git clone https://github.com/dct-lau17/bank-tech-test.git
+cd bank-test
+bundle install
+irb
+require './lib/account.rb'
+```
+run `rspec` to check tests and coverage
+
 ---------------
 ### Provided Requirements
 
@@ -32,16 +42,6 @@ date || credit || debit || balance
 ## Technology
 - Ruby
 - RSpec
-
-## Installation and Launching App
-```
-git clone https://github.com/dct-lau17/bank-tech-test.git
-cd bank-test
-bundle install
-irb
-require './lib/account.rb'
-```
-run `rspec` to check tests and coverage
 
 ## User Commands
 To create a new account: `your_account_name = Account.new`  

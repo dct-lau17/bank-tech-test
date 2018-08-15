@@ -2,18 +2,8 @@ require 'account'
 RSpec.describe Account do
   let(:transaction) { double(:transaction) }
   let(:transaction_class) { double(:transaction_class, new: transaction) }
-  let(:printer_class) { double(:printer_class, new: printer) }
   let(:printer) { double(:printer, print_statement: transaction) }
-  subject(:account) { described_class.new(transaction_class: transaction_class, printer: printer_class) }
-  describe '#defaults' do
-    it 'has a balance of 0' do
-      expect(account.balance).to eq 0
-    end
-
-    it 'has an empty transaction log' do
-      expect(account.transaction_log).to eq []
-    end
-  end
+  subject(:account) { described_class.new(transaction_class, printer) }
 
   describe '#deposit' do
     before do
@@ -23,12 +13,6 @@ RSpec.describe Account do
     it 'increases the account balance by the specified amount' do
       expect(account.balance).to eq 100
     end
-
-    # Test commented out as it is unecessary - leaving in for reference
-    # it 'creates a transaction instance with a credit value' do
-    #   expect(transaction_class).to have_received(:new)
-    #     .with(credit: "%.2f" % 100, balance: "%.2f" % 100)
-    # end
 
     it 'stores the deposit transaction into a transaction_log' do
       expect(account.transaction_log).to include transaction
@@ -51,11 +35,6 @@ RSpec.describe Account do
       expect(account.balance).to eq 900
     end
 
-    # it 'creates a transaction instance with a credit value' do
-    #   expect(transaction_class).to have_received(:new)
-    #     .with(debit: "%.2f" % 100, balance: "%.2f" % 900)
-    # end
-
     it 'stores the withdraw transaction into a transaction_log' do
       expect(account.transaction_log[1]).to eq transaction
     end
@@ -71,15 +50,12 @@ RSpec.describe Account do
     before do
       account.deposit(1000)
       account.withdraw(500)
-      account.statement
-    end
-
-    it 'creates an new printer instance' do
-      expect(printer_class).to have_received(:new)
     end
 
     it 'prints out statement from using the printer instance' do
-      expect(printer).to have_received(:print_statement)
+
+      expect(printer).to receive(:print_statement)
+      account.statement
     end
   end
 end

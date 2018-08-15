@@ -13,8 +13,8 @@ RSpec.describe Printer do
                             debit: 50,
                             date: '12/11/2010',
                             balance: 50)
-      log = [transaction1, transaction2]
-      @printer =  described_class.new(log)
+      @log = [transaction1, transaction2]
+      @printer =  described_class.new
     end
 
     it 'prints full statement in reverse order' do
@@ -24,7 +24,7 @@ RSpec.describe Printer do
       expected_output = [expected_output_trans2, expected_output_trans1].join("\n")
       expect(STDOUT).to receive(:puts).with(expected_output)
       expect(STDOUT).to receive(:puts).with(expected_header)
-      @printer.print_statement
+      @printer.print_statement(@log)
     end
   end
 end

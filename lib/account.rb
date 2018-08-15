@@ -4,7 +4,7 @@ class Account
   attr_reader :balance, :transaction_log
   MINIMUM_DEPOSIT = 1
 
-  def initialize(transaction_class: Transaction, printer: Printer)
+  def initialize(transaction_class = Transaction, printer = Printer.new)
     @balance = 0
     @transaction_class = transaction_class
     @transaction_log = []
@@ -14,7 +14,6 @@ class Account
   def deposit(amount)
     raise 'Sorry amount does not reach minimum requirement' if
       below_deposit_requirement?(amount)
-
     @balance += amount
     save(@transaction_class.new(credit: "%.2f" % amount, balance: "%.2f" % @balance))
   end
@@ -27,7 +26,7 @@ class Account
   end
 
   def statement
-    @printer.new(@transaction_log).print_statement
+    @printer.print_statement(@transaction_log)
   end
 
   private

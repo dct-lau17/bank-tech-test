@@ -1,11 +1,8 @@
 class Printer
-  def initialize(transaction_log)
-    @transactions = transaction_log
-  end
 
-  def print_statement
+  def print_statement(transactions)
     puts header
-    puts @transactions.reverse.map { |transaction|
+    puts transactions.reverse.map { |transaction|
       format(transaction)
     }.join("\n")
   end
