@@ -35,7 +35,7 @@ date || credit || debit || balance
 
 ## Installation and Launching App
 ```
-git clone
+git clone https://github.com/dct-lau17/bank-tech-test.git
 cd bank-test
 bundle install
 irb
