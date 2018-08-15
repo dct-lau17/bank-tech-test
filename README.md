@@ -41,8 +41,14 @@ bundle install
 irb
 require './lib/account.rb'
 ```
-
 run `rspec` to check tests and coverage
+
+## User Commands
+To create a new account: `your_account_name = Account.new`  
+To make a deposit: `your_account_name.deposit(100)`
+To make a withdrawal: `your_account_name.withdraw(100)`
+To view current balance: `your_account_name.balance`
+To view your statement: `your_account_name.statement`
 
 ## Approach
 1. User Stories- Broke the task into a user stories from an account holder perspective.
@@ -85,3 +91,4 @@ I want to be able to print a statement
 ```
 
 ## Example
+![Alt text](screenshots/account-example.png)

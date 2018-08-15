@@ -24,10 +24,11 @@ RSpec.describe Account do
       expect(account.balance).to eq 100
     end
 
-    it 'creates a transaction instance with a credit value' do
-      expect(transaction_class).to have_received(:new)
-        .with(credit: "%.2f" % 100, balance: "%.2f" % 100)
-    end
+    # Test commented out as it is unecessary - leaving in for reference
+    # it 'creates a transaction instance with a credit value' do
+    #   expect(transaction_class).to have_received(:new)
+    #     .with(credit: "%.2f" % 100, balance: "%.2f" % 100)
+    # end
 
     it 'stores the deposit transaction into a transaction_log' do
       expect(account.transaction_log).to include transaction
@@ -50,10 +51,10 @@ RSpec.describe Account do
       expect(account.balance).to eq 900
     end
 
-    it 'creates a transaction instance with a credit value' do
-      expect(transaction_class).to have_received(:new)
-        .with(debit: "%.2f" % 100, balance: "%.2f" % 900)
-    end
+    # it 'creates a transaction instance with a credit value' do
+    #   expect(transaction_class).to have_received(:new)
+    #     .with(debit: "%.2f" % 100, balance: "%.2f" % 900)
+    # end
 
     it 'stores the withdraw transaction into a transaction_log' do
       expect(account.transaction_log[1]).to eq transaction
@@ -70,15 +71,14 @@ RSpec.describe Account do
     before do
       account.deposit(1000)
       account.withdraw(500)
+      account.statement
     end
 
     it 'creates an new printer instance' do
-      account.statement
       expect(printer_class).to have_received(:new)
     end
 
     it 'prints out statement from using the printer instance' do
-      account.statement
       expect(printer).to have_received(:print_statement)
     end
   end
